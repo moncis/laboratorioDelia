@@ -1,5 +1,7 @@
 <?php
 include "vendor/autoload.php";
+include "conexion.php";
+include "formulario.php";
 $server=new nusoap_server;
 $server->configureWSDL('server','urn:server');
 $server->wsdl->schemaTargetNamespace='urn:server';
@@ -29,15 +31,11 @@ $server->register(
     'Funcion para promedio de notas de un alumno'
 );
 
+
 function alumno(){
     
-    $valor=array(
-        'Idalu'=>1,
-        'Nombre'=>'Juan Lopez',
-        'Laboratorio1'=>7.9,
-        'Laboratorio2'=>5.5,
-        'Parcial'=>9
-        );
+    $valor=executeInsert("insert into ALUMNOS_DELIA set Nombre='{$_POST["Nombre"]}',Laboratorio1='{$_POST["Laboratorio1"]}',Laboratorio2='{$_POST["Laboratorio2"]}',Parcial='{$_POST["Parcial"]}'");
+
     return $valor;
 }
 

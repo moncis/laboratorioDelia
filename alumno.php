@@ -11,4 +11,15 @@ if ($err) {
     exit(0);
 }
 
-$sql_insert = "insert into ALUMNOS_DELIA values ($nombre,$lab1,$lab2,$parcial)";
+class Compra extends BaseDeDatos {
+
+    //Crear el metodo constructor
+    public function __construct() {
+        parent::conectar();
+    }
+
+    public function save() {
+        return $this->executeInsert("insert into ALUMNOS_DELIA set Nombre='{$_POST["Nombre"]}',Laboratorio1='{$_POST["Laboratorio1"]}',Laboratorio2='{$_POST["Laboratorio2"]}',Parcial='{$_POST["Parcial"]}'");
+    }
+}
+//$insert="insert into ALUMNOS_DELIA set Nombre='{$_POST["Nombre"]}',Laboratorio1='{$_POST["Laboratorio1"]}',Laboratorio2='{$_POST["Laboratorio2"]}',Parcial='{$_POST["Parcial"]}'";
