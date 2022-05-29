@@ -1,5 +1,7 @@
 <?php
 include "vendor/autoload.php";
+include_once "conexion.php";
+include_once "resultado.php";
 
 $url="http://virtual.unicaes.edu.sv/labdelia/wslab.php?wsdl";
 $cliente=new nusoap_client($url,'wsdl');
@@ -9,14 +11,4 @@ if ($err) {
     exit(0);
 }
 
-$parametros=array('username'=>$_POST["username"],'password'=>$_POST["password"]);
-$result=$cliente->call('login',$parametros);
-echo $cliente->getError();
-if ($result["level"]>0){
-    echo "Id usuario:{$result["id_user"]}<br>";
-    echo "Nombre:{$result["fullname"]}<br>";
-    echo "Mail:{$result["email"]}<br>";
-    echo "Mensaje:{$result["msg"]}<br>";
-}else {
-    echo "Mensaje:{$result["msg"]}<br>";
-}
+$sql_insert = "insert into ALUMNOS_DELIA values ($nombre,$lab1,$lab2,$parcial)";
